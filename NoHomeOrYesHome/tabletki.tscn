@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbywadq7oj6ag"]
+
+[ext_resource type="FontFile" uid="uid://cfw08g10uyk0r" path="res://fonts/FIFAKS10DEV1.TTF" id="1_46m3k"]
+[ext_resource type="Script" path="res://Button.gd" id="2_kcq17"]
+
+[sub_resource type="Theme" id="Theme_ni00u"]
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+
+[sub_resource type="Theme" id="Theme_w08tx"]
+Button/colors/font_focus_color = Color(0.94902, 0.94902, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ni00u")
+theme_override_fonts/font = ExtResource("1_46m3k")
+theme_override_font_sizes/font_size = 8
+text = "ПРИНЯТЬ ТАБЛЕТКИ"
+flat = true
+icon_alignment = 1
+script = ExtResource("2_kcq17")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 6
+theme = SubResource("Theme_w08tx")
+theme_override_fonts/font = ExtResource("1_46m3k")
+theme_override_font_sizes/font_size = 8
+text = "Из-за небольшого количества времени и низкого опыта работы в движке не успел рассказать историю так, как я хотел. По задумке у героя эскапизм и он видит мир по своему. Если будет интересно, то могу доделать историю с более красивыми спрайтами и адекватным кодом. Это конец игры, можно выключать игру.
+Пойду sleep 😴"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

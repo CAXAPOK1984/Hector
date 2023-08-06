@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfh5jyx7qay7r"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_3w2di"]
+[ext_resource type="Texture2D" uid="uid://gkssy5e8qyb5" path="res://Jam_hero.png" id="1_arjy1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpk3f"]
+size = Vector2(4, 2)
+
+[node name="Hero" type="CharacterBody2D"]
+script = ExtResource("1_3w2di")
+
+[node name="GgSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("1_arjy1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_kpk3f")
+
+[node name="Look" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
+target_position = Vector2(0, 10)

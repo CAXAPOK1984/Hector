@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1mncvsxrkwhe"]
+
+[ext_resource type="AudioStream" uid="uid://efv4j5o3r0gh" path="res://dreams.mp3" id="1_ufgi0"]
+
+[node name="Dreams" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_ufgi0")

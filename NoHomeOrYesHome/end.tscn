@@ -1,0 +1,269 @@
+[gd_scene load_steps=27 format=3 uid="uid://co3mx32r0phm6"]
+
+[ext_resource type="Script" path="res://Darling.gd" id="1_hx0we"]
+[ext_resource type="Texture2D" uid="uid://bswkp3eu7ihv8" path="res://floor.png" id="1_lrg2w"]
+[ext_resource type="Texture2D" uid="uid://r8r7yujsldev" path="res://photo.png" id="2_1wt08"]
+[ext_resource type="Script" path="res://GoToSleep.gd" id="3_2y7wj"]
+[ext_resource type="Script" path="res://Photo_end.gd" id="4_in3bb"]
+[ext_resource type="Texture2D" uid="uid://dr1slgeup6472" path="res://bed.png" id="4_iuog8"]
+[ext_resource type="Script" path="res://Hero_tired.gd" id="5_mljv6"]
+[ext_resource type="Texture2D" uid="uid://gkssy5e8qyb5" path="res://Jam_hero.png" id="6_t0y5t"]
+[ext_resource type="FontFile" uid="uid://cfw08g10uyk0r" path="res://fonts/FIFAKS10DEV1.TTF" id="7_cn2di"]
+[ext_resource type="Shader" path="res://end.gdshader" id="9_7tquj"]
+[ext_resource type="AudioStream" uid="uid://dufkm50qfgiky" path="res://GlitchEffects.mp3" id="10_3miud"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nmxnw"]
+texture = ExtResource("1_lrg2w")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tf2qd"]
+texture = ExtResource("2_1wt08")
+texture_region_size = Vector2i(16, 23)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_235ve"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
+sources/1 = SubResource("TileSetAtlasSource_nmxnw")
+sources/2 = SubResource("TileSetAtlasSource_tf2qd")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03i80"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cws3d"]
+size = Vector2(16, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3uey"]
+size = Vector2(452, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patgn"]
+size = Vector2(15, 334)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpk3f"]
+size = Vector2(4, 2)
+
+[sub_resource type="Animation" id="Animation_q0scx"]
+resource_name = "sleep"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7, 11, 15.1, 20, 24, 28.1, 32.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["Дорогой..."],
+"method": &"wakeup"
+}, {
+"args": ["Дорогой, проснись"],
+"method": &"wakeup"
+}, {
+"args": ["Дорогой, прими лекарства"],
+"method": &"wakeup"
+}, {
+"args": ["Ты забыл, что это всё ненастоящее?"],
+"method": &"wakeup"
+}, {
+"args": ["У тебя нет друзей, это совсем не дом, а на работе тебя все ненавидят."],
+"method": &"wakeup"
+}, {
+"args": ["Дорогой, не забывай..."],
+"method": &"wakeup"
+}, {
+"args": [],
+"method": &"weAreDead"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(32.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovx24"]
+_data = {
+"sleep": SubResource("Animation_q0scx")
+}
+
+[sub_resource type="Gradient" id="Gradient_7kexy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2q0f5"]
+gradient = SubResource("Gradient_7kexy")
+
+[sub_resource type="Gradient" id="Gradient_my0pi"]
+offsets = PackedFloat32Array(0.618297)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s86jd"]
+gradient = SubResource("Gradient_my0pi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2afpw"]
+shader = ExtResource("9_7tquj")
+shader_parameter/amount = 0.5
+shader_parameter/offset = 0.00500005
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hx0we")
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+texture_repeat = 1
+tile_set = SubResource("TileSet_235ve")
+format = 2
+layer_0/tile_data = PackedInt32Array(2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 393218, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 393219, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 393220, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, 393221, 1, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, 393222, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 327687, 1, 0, 393223, 1, 0, 8, 1, 0, 65544, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, 393224, 1, 0, 9, 1, 0, 65545, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 1, 0, 327689, 1, 0, 393225, 1, 0)
+
+[node name="Photo" type="StaticBody2D" parent="."]
+position = Vector2(150, 12)
+script = ExtResource("4_in3bb")
+
+[node name="Photo" type="Sprite2D" parent="Photo"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("2_1wt08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Photo"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_03i80")
+
+[node name="Bed" type="StaticBody2D" parent="."]
+position = Vector2(150, 12)
+script = ExtResource("3_2y7wj")
+
+[node name="Photo" type="Sprite2D" parent="Bed"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-105, 7)
+texture = ExtResource("4_iuog8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
+position = Vector2(-105, 9.25)
+shape = SubResource("RectangleShape2D_cws3d")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(96, 1)
+shape = SubResource("RectangleShape2D_i3uey")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(96, 118)
+shape = SubResource("RectangleShape2D_i3uey")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(24.5, 54)
+shape = SubResource("RectangleShape2D_patgn")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(168, 54)
+shape = SubResource("RectangleShape2D_patgn")
+
+[node name="Hero" type="CharacterBody2D" parent="."]
+position = Vector2(97, 98)
+script = ExtResource("5_mljv6")
+
+[node name="GgSprite" type="Sprite2D" parent="Hero"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("6_t0y5t")
+
+[node name="Collision" type="CollisionShape2D" parent="Hero"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_kpk3f")
+
+[node name="Look" type="RayCast2D" parent="Hero"]
+position = Vector2(0, 8)
+target_position = Vector2(0, 10)
+
+[node name="Sleep" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovx24")
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.141176)
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 225.0
+offset_bottom = 129.0
+texture = SubResource("GradientTexture1D_2q0f5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 225.0
+offset_bottom = 129.0
+texture = SubResource("GradientTexture1D_s86jd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.0
+offset_right = 90.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("7_cn2di")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2afpw")
+offset_right = 192.0
+offset_bottom = 112.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3miud")

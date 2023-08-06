@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://h883begc7n13"]
+
+[ext_resource type="Script" path="res://work.gd" id="1_ib8gx"]
+[ext_resource type="FontFile" uid="uid://cfw08g10uyk0r" path="res://fonts/FIFAKS10DEV1.TTF" id="1_n04tc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ib8gx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.463
+anchor_right = 0.969
+anchor_bottom = 0.537
+offset_left = 0.0479999
+offset_top = -0.00400162
+offset_right = -0.0480042
+offset_bottom = 0.00400162
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_n04tc")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]выавыываssss"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false

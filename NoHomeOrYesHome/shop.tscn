@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://clglihwvwjga7"]
+
+[ext_resource type="Texture2D" uid="uid://15xuvu60sqxa" path="res://flooor.png" id="1_2xmqg"]
+[ext_resource type="Texture2D" uid="uid://pnrrmq1ommrq" path="res://fridge.png" id="2_g83s0"]
+[ext_resource type="Script" path="res://StaticBody2D.gd" id="3_38ftj"]
+[ext_resource type="Script" path="res://Kassa.gd" id="4_0mqr4"]
+[ext_resource type="PackedScene" uid="uid://dfh5jyx7qay7r" path="res://hero.tscn" id="4_71cru"]
+[ext_resource type="Texture2D" uid="uid://bmx30qy4miojt" path="res://kassa.png" id="5_6rdus"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iwsvn"]
+texture = ExtResource("1_2xmqg")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7kmbh"]
+texture = ExtResource("2_g83s0")
+texture_region_size = Vector2i(16, 28)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 6)
+
+[sub_resource type="TileSet" id="TileSet_4qac2"]
+sources/0 = SubResource("TileSetAtlasSource_iwsvn")
+sources/1 = SubResource("TileSetAtlasSource_7kmbh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_squqx"]
+size = Vector2(127, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlaen"]
+size = Vector2(111.5, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po00b"]
+size = Vector2(192, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jte1"]
+size = Vector2(20, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_be8tt"]
+size = Vector2(12, 45)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+texture_repeat = 1
+tile_set = SubResource("TileSet_4qac2")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 1, 0, 1, 1, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 1, 0, 2, 1, 0, 65538, 0, 0, 131074, 0, 0, 196610, 1, 0, 262146, 0, 0, 327682, 0, 0, 393218, 1, 0, 3, 1, 0, 65539, 0, 0, 131075, 0, 0, 196611, 1, 0, 262147, 0, 0, 327683, 0, 0, 393219, 1, 0, 4, 1, 0, 65540, 0, 0, 131076, 0, 0, 196612, 1, 0, 262148, 0, 0, 327684, 0, 0, 393220, 1, 0, 5, 1, 0, 65541, 0, 0, 131077, 0, 0, 196613, 1, 0, 262149, 0, 0, 327685, 0, 0, 393221, 0, 0, 6, 1, 0, 65542, 0, 0, 131078, 0, 0, 196614, 1, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 7, 1, 0, 65543, 0, 0, 131079, 0, 0, 196615, 1, 0, 262151, 0, 0, 327687, 0, 0, 393223, 0, 0, 8, 0, 0, 65544, 0, 0, 131080, 0, 0, 196616, 1, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 9, 0, 0, 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 327689, 0, 0, 393225, 0, 0, 10, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 393226, 0, 0, 11, 0, 0, 65547, 0, 0, 131083, 0, 0, 196619, 0, 0, 262155, 0, 0, 327691, 0, 0, 393227, 0, 0)
+
+[node name="Shops" type="StaticBody2D" parent="."]
+script = ExtResource("3_38ftj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shops"]
+position = Vector2(64.5, 5)
+shape = SubResource("RectangleShape2D_squqx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Shops"]
+position = Vector2(88.25, 50)
+shape = SubResource("RectangleShape2D_xlaen")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Shops"]
+position = Vector2(24, 98)
+shape = SubResource("RectangleShape2D_xlaen")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(96, 122)
+shape = SubResource("RectangleShape2D_po00b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(96, -10)
+shape = SubResource("RectangleShape2D_po00b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-10, 59.5)
+shape = SubResource("RectangleShape2D_8jte1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(202, 59.5)
+shape = SubResource("RectangleShape2D_8jte1")
+
+[node name="Kassa" type="StaticBody2D" parent="."]
+position = Vector2(95, 103)
+script = ExtResource("4_0mqr4")
+
+[node name="Kassa" type="Sprite2D" parent="Kassa"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(77, -34)
+texture = ExtResource("5_6rdus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kassa"]
+position = Vector2(75, -33.5)
+shape = SubResource("RectangleShape2D_be8tt")
+
+[node name="Hero" parent="." instance=ExtResource("4_71cru")]
+position = Vector2(95, 103)
